@@ -795,7 +795,7 @@ namespace petterns
                 Console.WriteLine();
             }
         }
-       // C* (i - k) / k
+       
 
     }
 
@@ -882,24 +882,39 @@ namespace petterns
     {
         public void pattern1(int n)
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 1; i <= n; i++)
             {
                 int number = 1;
 
-                for (int k = 0; k < n - i; k++)
-                {
-                    Console.Write("  ");
-                }
-
-                for (int j = 0; j <= i; j++)
+                for (int j = 1; j <= i; j++)
                 {
                     Console.Write(number + "   ");
-                    number = number * (i - j) / (j + 1);
+                    number = number * (i - j) / j;
                 }
                 Console.WriteLine();
             }
         }
-    
+
+        public void pattern2(int n)
+        {
+            int rows = 5;
+            int[,] triangle = new int[rows, rows];
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    if (j == 0 || j == i)
+                        triangle[i, j] = 1;
+                    else
+                           triangle[i, j] = triangle[i - 1, j - 1] + triangle[i - 1, j];
+
+                    Console.Write(triangle[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+        }
     }
 
 
@@ -1032,6 +1047,8 @@ namespace petterns
 
             Console.WriteLine("pattern1");
             pascalsTriangle.pattern1(n);
+            Console.WriteLine("pattern2");
+            pascalsTriangle.pattern2(n);
         }
     }
 }
